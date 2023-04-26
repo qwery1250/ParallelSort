@@ -23,7 +23,7 @@ func max(nums []int) int {
 
 func main() {
 	rand.Seed(time.Now().UnixNano()) // 設置亂數種子
-	arrLen := 10
+	arrLen := 1000
 	arr := make([]int, arrLen)
 	for i := 0; i < arrLen; i++ {
 		arr[i] = rand.Intn(100) // 產生 0-99 的亂數整數
