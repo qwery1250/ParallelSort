@@ -39,12 +39,12 @@ func (bl BoxList) BiggestColor() Color {
 	return k
 }
 
-func (bl *BoxList) PaintItBlack() {
-	for index, _ := range *bl {
-		box := &(*bl)[index]
-		box.SetColor(BLACK)
+func (bl BoxList) PaintItBlack() {
+	for i := range bl {
+		bl[i].SetColor(BLACK)
 	}
 }
+
 func (c Color) String() string {
 	strings := []string{"WHITE", "BLACK", "BLUE", "RED", "YELLOW"}
 	return strings[c]
