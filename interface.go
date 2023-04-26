@@ -5,6 +5,9 @@ import (
 	"math"
 )
 
+type whatShape interface {
+	String() string
+}
 type Shape interface {
 	Area() float64
 }
@@ -24,11 +27,13 @@ type Rectangle struct {
 func (r Rectangle) Area() float64 {
 	return r.width * r.height
 }
-
+func (r Rectangle) String() string {
+	return fmt.Sprintf("my Shape is %T", r)
+}
 func main() {
 	c := Circle{radius: 5}
 	fmt.Println("Area of circle:", c.Area())
 
 	r := Rectangle{width: 10, height: 5}
-	fmt.Println("Area of rectangle:", r.Area())
+	fmt.Println(r)
 }
