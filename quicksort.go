@@ -22,7 +22,7 @@ func main() {
 
 	// 使用快速排序排序
 	startTime := time.Now()
-	quicksort(nums)
+	quickSort(nums)
 
 	endTime := time.Now()
 
@@ -37,24 +37,35 @@ func main() {
 	fmt.Printf("最大記憶體佔用量: %d bytes\n", maxMem)
 }
 
-func quicksort(nums []int) {
-	if len(nums) <= 1 {
-		return
+func quickSort(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
 	}
 
-	pivot := nums[0]
-	left := make([]int, 0)
-	right := make([]int, 0)
-	for _, n := range nums[1:] {
-		if n <= pivot {
-			left = append(left, n)
-		} else {
-			right = append(right, n)
+	// 选择中间值作为基准
+	pivot := arr[len(arr)/2]
+
+	// 分割成三个数组
+	less := make([]int, 0)
+	equal := make([]int, 0)
+	more := make([]int, 0)
+	for _, val := range arr {
+		switch {
+		case val < pivot:
+			less = append(less, val)
+		case val == pivot:
+			equal = append(equal, val)
+		case val > pivot:
+			more = append(more, val)
 		}
 	}
 
-	quicksort(left)
-	quicksort(right)
+	// 递归排序
+	less = quickSort(less)
+	more = quickSort(more)
 
-	copy(nums, append(append(left, pivot), right...))
+	// 合并结果
+	result := append(less, equal...)
+	result = append(result, more...)
+	return result
 }
